@@ -18,8 +18,8 @@ class Choices(object):
         _choices = tuple(pairs)
         _names = tuple(name for name, value in _choices)
 
-        self.__dict__['_choices'] = _choices
-        self.__dict__['_names'] = _names
+        self.__dict__['choices'] = _choices
+        self.__dict__['constants'] = _names
 
         for name in _names:
             if hasattr(self, name):
@@ -33,13 +33,4 @@ class Choices(object):
         raise AttributeError(message % (self.__class__.__name__, name))
 
     def __iter__(self):
-        return iter(self._names)
-
-    @property
-    def choices(self):
-        return self._choices
-
-    @property
-    def constants(self):
-        return self._names
-
+        return iter(self.constants)
